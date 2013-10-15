@@ -1,0 +1,31 @@
+{
+    "description" : "Displays important nginx metrics",
+    "icon" : "icon.png",
+    "command" : "node index.js",
+    "postExtract" : "npm install",
+    "ignore" : "node_modules",
+    "metrics" : ["NGINX_ACTIVE_CONNECTIONS", "NGINX_READING", "NGINX_WRITING", "NGINX_WAITING", "NGINX_HANDLED",
+        "NGINX_NOT_HANDLED", "NGINX_REQUESTS", "NGINX_REQUESTS_PER_CONNECTION"],
+    // "dashboards" : [{"name" : "nginx", "layout" : "d-w=3&d-h=2&d-pad=5&d-bg=none&d-g-REDIS_CONNECTED_CLIENTS=0-0-1-1&d-g-REDIS_KEY_HITS=1-0-1-1-t&d-g-REDIS_KEY_MISSES=1-0-1-1-b&d-g-REDIS_COMMANDS_PROCESSED=2-0-1-1&d-g-REDIS_CONNECTIONS_RECEIVED=2-1-1-1&d-g-REDIS_KEYS_EXPIRED=1-1-1-1-t&d-g-REDIS_KEY_EVICTIONS=1-1-1-1-b&d-g-REDIS_USED_MEMORY=0-1-1-1"}],
+    "paramSchema" : [
+        {
+            "title" : "Statistics URL",
+            "name" : "url",
+            "description" : "The URL endpoint of where the nginx statistics are hosted.",
+            "type" : "string",
+            "default" : "http://localhost/nginx_status"
+        },
+        {
+            "title" : "Username",
+            "name" : "username",
+            "description" : "If the endpoint is password protected, what username should graphdat use when calling it.",
+            "type" : "string"
+        },
+        {
+            "title" : "Password",
+            "name" : "password",
+            "description" : "If the endpoint is password protected, what password should graphdat use when calling it.",
+            "type" : "password"
+        }
+    ]
+}

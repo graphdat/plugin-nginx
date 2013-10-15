@@ -1,0 +1,26 @@
+{
+	"name": "graphdat-nginx-plugin",
+	"version": "0.0.1",
+	"private": false,
+	"description": "Nginx plugin for Graphat",
+	"main": "index.js",
+	"devDependencies": {},
+	"dependencies": {
+		"request" : "2.27.x"
+	},
+	"repository": {
+    "type": "git",
+    "url": "https://github.com/graphdat/plugin-nginx"
+  },
+  "keywords": [
+    "graphdat",
+    "plugin",
+    "nginx"
+  ],
+  "author": "Graphdat <support@graphdat.com>",
+  "license": "Apache v2",
+  "bugs": {
+    "url": "https://github.com/graphdat/plugin-nginx/issues"
+  },
+	"engine": "node >= 0.8.1"
+}
