@@ -5,7 +5,7 @@ var _https = require('https');
 var _request = require('request');
 
 // how often do we call nginx to get the data
-var _pollInterval = _param.pollInterval;
+var _pollInterval = _param.pollInterval || 1000;
 
 // remember the previous poll so we can provide proper counts
 var _previousHandled = 0;
@@ -35,17 +35,17 @@ function getStats(cb)
         var stats = {};
         body.split('\n').forEach(function(line)
         {
-            if (line.indexOf('Active connections:' === 0))
+            if (line.indexOf('Active connections:') === 0)
             {
                 var active = line.match(/(\w+):\s*(\d+)/);
-                stats[kvp[1].toLowerCase()] = stats[kvp[2]];
+                stats[active[1].toLowerCase()] = active[2];
             }
             else if (line.match(/\s*(\d+)\s+(\d+)\s+(\d+)\s*$/))
             {
                 var match = line.match(/\s*(\d+)\s+(\d+)\s+(\d+)\s*$/);
-                stats.accepts = match[0];
-                stats.handled = match[1];
-                stats.requests = match[2];
+                stats.accepts = match[1];
+                stats.handled = match[2];
+                stats.requests = match[3];
                 stats.nothandled = stats.accepts - stats.handled;
             }
             else if (line.match(/(\w+):\s*(\d+)/))
@@ -56,7 +56,7 @@ function getStats(cb)
                     if (!kvp)
                         break;
 
-                    stats[kvp[1].toLowerCase()] = stats[kvp[2]];
+                    stats[kvp[1].toLowerCase()] = kvp[2];
                     line = line.replace(kvp[0], '');
                 }
             }
