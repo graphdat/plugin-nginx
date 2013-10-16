@@ -84,8 +84,8 @@ function poll(cb)
         if (err)
             return console.error(err);
 
-        var handled = diff(current.handled, _previous.handled || 0);
-        var requests = diff(current.requests, _previous.requests || 0);
+        var handled = ('handled' in _previous) ? diff(current.handled, _previous.handled || 0) : 0;
+        var requests = ('requests' in _previous) ? diff(current.requests, _previous.requests || 0) : 0;
         var requestsPerConnection = (requests > 0 && handled !== 0) ? requests/handled : 0;
 
         _previous = current;
