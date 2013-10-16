@@ -3,7 +3,7 @@
 #### Tracks the following metrics for [nginx](http://nginx.org) (from the [nginx HttpStubStatusModule](http://wiki.nginx.org/HttpStubStatusModule)):
 
 * active connections
-   * reading - Connections with Nginx reading request headers.
+  * reading - Connections with Nginx reading request headers.
   * writing - Connections with Nginx reading request body, processing request or writing response to client.
   * waiting - Keep-alive connections with Nginx in wait state
   * connections - Total active connections
