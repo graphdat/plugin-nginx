@@ -5,8 +5,6 @@
     "postExtract" : "npm install",
     "ignore" : "node_modules",
 
-    // comment will break this
-
     "metrics" : [
         "NGINX_ACTIVE_CONNECTIONS",
         "NGINX_READING",
