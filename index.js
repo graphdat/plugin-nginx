@@ -12,6 +12,9 @@ var _httpOptions;
 if (_param.username)
     _httpOptions = { user: _param.username, pass: _param.password, sendImmediately: true };
 
+// if we do not have a source, then set it
+_param.source = _param.source || _os.hostname();
+
 // get the natural difference between a and b
 function diff(a, b)
 {

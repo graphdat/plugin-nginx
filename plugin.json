@@ -25,6 +25,12 @@
 
     "paramSchema" : [
         {
+            "title" : "Source",
+            "name" : "source",
+            "description" : "The Source to display in the legend for the nginx data.  It will default to the hostname of the server",
+            "type" : "string"
+        },
+        {
             "title" : "Statistics URL",
             "name" : "url",
             "description" : "The URL endpoint of where the nginx statistics are hosted.",
