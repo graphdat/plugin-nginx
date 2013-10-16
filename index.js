@@ -4,19 +4,39 @@ var _http = require('http');
 var _https = require('https');
 var _request = require('request');
 
+var DEFAULT_POLL_INTERVAL = 1000;
+var DEFAULT_SOURCE = _os.hostname();
+var DEFAULT_URL = 'http://127.0.0.1/nginx_status';
+
 // how often do we call nginx to get the data
-var _pollInterval = _param.pollInterval || 1000;
+var _pollInterval = _param.pollInterval || DEFAULT_POLL_INTERVAL;
+
+// what is the hostname of the nginx server
+var _source = _param.source || DEFAULT_SOURCE;
 
 // remember the previous poll so we can provide proper counts
-var _previousHandled = 0;
-var _previousRequests = 0;
+var _previous = {};
 
 // nginx's http options
-var _url = _param.url || 'http://127.0.0.1/nginx_status';
+var _url = _param.url || DEFAULT_URL;
 
+// if we have a name and password, then add an auth header
 var _httpOptions;
 if (_param.username)
     _httpOptions = { user: _param.username, pass: _param.password, sendImmediately: true };
+
+// get the natural difference between a and b
+function diff(a, b)
+{
+    return Math.max(a - b, 0);
+}
+
+// validate the input, return 0 if its not an integer
+function parse(x)
+{
+    var y = parseInt(x, 10);
+    return (isNaN(y) ? 0 : y);
+}
 
 // call nginx and parse the stats
 function getStats(cb)
