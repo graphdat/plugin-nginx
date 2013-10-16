@@ -58,14 +58,14 @@ function getStats(cb)
             if (line.indexOf('Active connections:') === 0)
             {
                 var active = line.match(/(\w+):\s*(\d+)/);
-                stats[active[1].toLowerCase()] = active[2];
+                stats[active[1].toLowerCase()] = parse(active[2]);
             }
             else if (line.match(/\s*(\d+)\s+(\d+)\s+(\d+)\s*$/))
             {
                 var match = line.match(/\s*(\d+)\s+(\d+)\s+(\d+)\s*$/);
-                stats.accepts = match[1];
-                stats.handled = match[2];
-                stats.requests = match[3];
+                stats.accepts = parse(match[1]);
+                stats.handled = parse(match[2]);
+                stats.requests = parse(match[3]);
                 stats.nothandled = stats.accepts - stats.handled;
             }
             else if (line.match(/(\w+):\s*(\d+)/))
@@ -76,7 +76,7 @@ function getStats(cb)
                     if (!kvp)
                         break;
 
-                    stats[kvp[1].toLowerCase()] = kvp[2];
+                    stats[kvp[1].toLowerCase()] = parse(kvp[2]);
                     line = line.replace(kvp[0], '');
                 }
             }
@@ -89,30 +89,26 @@ function getStats(cb)
 // get the stats, format the output and send to stdout
 function poll(cb)
 {
-    getStats(function(err, stats)
+    getStats(function(err, current)
     {
         if (err)
             return console.error(err);
 
-        var currentHandled = stats.handled;
-        var currentRequests = stats.requests;
+        var handled = diff(current.handled, _previous.handled || 0);
+        var requests = diff(current.requests, _previous.requests || 0);
+        var requestsPerConnection = (requests > 0 && handled !== 0) ? requests/handled : 0;
 
-        var connections = Math.max(currentHandled - _previousHandled, 0);
-        var requests = Math.max(currentRequests - _previousRequests, 0);
-        var requestsPerConnection = requests/connections;
-
-        _previousHandled = currentHandled;
-        _previousRequests = currentRequests;
+        _previous = current;
 
         // Report
-        console.log('NGINX_ACTIVE_CONNECTIONS %d %s', stats.connections, _param.source);
-        console.log('NGINX_READING %d %s', stats.reading, _param.source);
-        console.log('NGINX_WRITING %d %s', stats.writing, _param.source);
-        console.log('NGINX_WAITING %d %s', stats.waiting, _param.source);
-        console.log('NGINX_HANDLED %d %s', stats.handled, _param.source);
-        console.log('NGINX_NOT_HANDLED %d %s', stats.nothandled, _param.source);
-        console.log('NGINX_REQUESTS %d %s', requests, _param.source);
-        console.log('NGINX_REQUESTS_PER_CONNECTION %d %s', requestsPerConnection, _param.source);
+        console.log('NGINX_ACTIVE_CONNECTIONS %d %s', current.connections, _source);
+        console.log('NGINX_READING %d %s', current.reading, _source);
+        console.log('NGINX_WRITING %d %s', current.writing, _source);
+        console.log('NGINX_WAITING %d %s', current.waiting, _source);
+        console.log('NGINX_HANDLED %d %s', handled, _source);
+        console.log('NGINX_NOT_HANDLED %d %s', current.nothandled, _source);
+        console.log('NGINX_REQUESTS %d %s', requests, _source);
+        console.log('NGINX_REQUESTS_PER_CONNECTION %d %s', requestsPerConnection, _source);
     });
 
     setTimeout(poll, _pollInterval);
