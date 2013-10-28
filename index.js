@@ -10,7 +10,7 @@ var _previous = {};
 // if we have a name and password, then add an auth header
 var _httpOptions;
 if (_param.username)
-    _httpOptions = { user: _param.username, pass: _param.password, sendImmediately: true };
+    _httpOptions = { auth: { user: _param.username, pass: _param.password, sendImmediately: true }};
 
 // if we do not have a source, then set it
 _param.source = _param.source || _os.hostname();
@@ -18,12 +18,17 @@ _param.source = _param.source || _os.hostname();
 // get the natural difference between a and b
 function diff(a, b)
 {
-    return Math.max(a - b, 0);
+    if (a == null || b == null)
+        return 0;
+    else
+        return Math.max(a - b, 0);
 }
 
 // validate the input, return 0 if its not an integer
 function parse(x)
 {
+    if (x == null) return 0;
+
     var y = parseInt(x, 10);
     return (isNaN(y) ? 0 : y);
 }
@@ -36,6 +41,8 @@ function getStats(cb)
     {
         if (err)
             return cb(err);
+        if (resp.statusCode === 401)
+            return cb(new Error('Nginx returned with an error - recheck the username/password you provided'));
         if (resp.statusCode !== 200)
             return cb(new Error('Nginx returned with an error - recheck the URL you provided'));
         if (!body)
@@ -84,8 +91,8 @@ function poll(cb)
         if (err)
             return console.error(err);
 
-        var handled = ('handled' in _previous) ? diff(current.handled, _previous.handled || 0) : 0;
-        var requests = ('requests' in _previous) ? diff(current.requests, _previous.requests || 0) : 0;
+        var handled = ('handled' in _previous) ? diff(current.handled, _previous.handled) : 0;
+        var requests = ('requests' in _previous) ? diff(current.requests, _previous.requests) : 0;
         var requestsPerConnection = (requests > 0 && handled !== 0) ? requests/handled : 0;
 
         _previous = current;
