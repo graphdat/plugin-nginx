@@ -3,6 +3,7 @@ var _os = require('os');
 var _http = require('http');
 var _https = require('https');
 var _request = require('request');
+var _tools = require('graphdat-plugin-tools');
 
 // remember the previous poll data so we can provide proper counts
 var _previous = {};
