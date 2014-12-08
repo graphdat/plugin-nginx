@@ -66,6 +66,17 @@ To collect statistics from nginx, it needs to built with the [nginx HttpStubStat
      $ sudo service nginx reload
     ```
 
+#### Verify `HttpStubStatusModule` is Collecting Statistics
+
+1. Run the following command, which shows the expected output:
+    ```bash
+    $ curl http://localhost:8000/nginx_status
+    Active connections: 1
+    server accepts handled requests
+    5 5 5
+    Reading: 0 Writing: 1 Waiting: 0
+    ```
+
 ### Plugin Configuration Fields
 
 |Field Name    |Description                                                                                           |
