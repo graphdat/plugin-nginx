@@ -10,7 +10,7 @@ Collects metrics from an Nginx instance.
 
 ### Prerequisites
 - node version 0.8.0 or later
-- npm version
+- npm version 1.4.21 or later
 
 ### Plugin Setup
 
