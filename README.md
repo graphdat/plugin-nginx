@@ -1,20 +1,24 @@
 Boundary Nginx Plugin
 ---------------------
-Collects metrics from an Nginx instance.
-
-### Platforms
-- Windows
-- Linux
-- OS X
-- SmartOS
+Collects metrics from an Nginx server instance.
 
 ### Prerequisites
-- node version 0.8.0 or later
-- npm version 1.4.21 or later
+
+|     OS    | Linux | Windows | SmartOS | OS X |
+|:----------|:-----:|:-------:|:-------:|:----:|
+| Supported |   v   |    v    |    v    |  v   |
+
+
+|  Runtime | node.js | Python | Java |
+|:---------|:-------:|:------:|:----:|
+| Required |    +    |        |      |
+
+- [How to install node.js?](https://help.boundary.com/hc/articles/202360701)
+- Requires Ngnix's HttpStubStatusModule 
 
 ### Plugin Setup
 
-To collect statistics from nginx, it needs to built with the [nginx HttpStubStatusModule](http://wiki.nginx.org/HttpStubStatusModule).  If you used a package manager to install nginx, it should be compiled by default, if you built nginx yourself, you may need to recompile it.
+To collect statistics from nginx, it needs to built with the [nginx HttpStubStatusModule](http://wiki.nginx.org/HttpStubStatusModule). If you used a package manager to install Nginx, it should be compiled by default, if you built Nginx yourself, you may need to recompile it.
 
 #### Verify That `nginx` Includes `HttpStubStatusModule`
 
@@ -85,7 +89,6 @@ To collect statistics from nginx, it needs to built with the [nginx HttpStubStat
 |Statistics URL|The URL endpoint of where the nginx statistics are hosted.                                            |
 |Username      |If the endpoint is password protected, what username should graphdat use when calling it.             |
 |Password      |If the endpoint is password protected, what password should graphdat use when calling it.             |
-
 
 ### Metrics Collected
 
