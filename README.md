@@ -1,6 +1,6 @@
 Boundary Nginx Plugin
 ---------------------
-Collects metrics from an Nginx server instance.
+Collects metrics from an Nginx server instance. See video [walkthrough](https://help.boundary.com/hc/articles/201385702).
 
 ### Prerequisites
 
