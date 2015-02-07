@@ -14,7 +14,7 @@ Collects metrics from an Nginx server instance. See video [walkthrough](https://
 | Required |    +    |        |      |
 
 - [How to install node.js?](https://help.boundary.com/hc/articles/202360701)
-- Requires Ngnix's HttpStubStatusModule 
+- Requires Ngnix's HttpStubStatusModule
 
 ### Plugin Setup
 
@@ -87,6 +87,7 @@ To collect statistics from nginx, it needs to built with the [nginx HttpStubStat
 |:-------------|:-----------------------------------------------------------------------------------------------------|
 |Source        |The Source to display in the legend for the nginx data.  It will default to the hostname of the server|
 |Statistics URL|The URL endpoint of where the nginx statistics are hosted.                                            |
+|Strict SSL    |Use Strict SSL checking when HTTPS is enabled, enabled by default                                     |
 |Username      |If the endpoint is password protected, what username should graphdat use when calling it.             |
 |Password      |If the endpoint is password protected, what password should graphdat use when calling it.             |
 
@@ -96,6 +97,8 @@ Tracks the following metrics for [nginx](http://nginx.org) (from the [nginx Http
 
 |Metric Name                  |Description                                                                                   |
 |:----------------------------|:---------------------------------------------------------------------------------------------|
+|_Community Edition Metrics_                                                                                                 |
+|                                                                                                                            |
 |Nginx Active Connections     |Active connections to nginx                                                                   |
 |Nginx Reads                  |Connections with Nginx reading request headers                                                |
 |Nginx Writes                 |Connections with Nginx reading request body, processing request or writing response to client.|
@@ -104,3 +107,9 @@ Tracks the following metrics for [nginx](http://nginx.org) (from the [nginx Http
 |Nginx Connections Not Handled|Connections accepted, but not handled                                                         |
 |Nginx Requests               |Requests to nginx                                                                             |
 |Nginx Requests per Connection|Requests per handled connections for nginx                                                    |
+|                                                                                                                            |
+|_Commercial Edition Metrics (per zone)_                                                                                     |
+|                                                                                                                            |
+|Nginx Responses              |The total number of responses sent to clients.                                                |
+|Nginx Traffic Sent           |The total number of bytes sent to clients.                                                    |
+|Nginx Traffic Received       |The total number of bytes received from clients.                                              |
