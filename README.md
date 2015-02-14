@@ -18,15 +18,15 @@ Collects metrics from an Nginx server instance. See video [walkthrough](https://
 
 ### Plugin Setup
 
-To collect statistics from nginx, it needs to built with the [nginx HttpStubStatusModule](http://wiki.nginx.org/HttpStubStatusModule). If you used a package manager to install Nginx, it should be compiled by default, if you built Nginx yourself, you may need to recompile it.
+To collect statistics from nginx, it needs to built with the [nginx HttpStubStatusModule](http://nginx.org/en/docs/http/ngx_http_stub_status_module.html). If you used a package manager to install Nginx, it should be compiled by default, if you built Nginx yourself, you may need to recompile it.
 
 #### Verify That `nginx` Includes `HttpStubStatusModule`
 
-1. To check if your nginx has been build with the [nginx HttpStubStatusModule](http://wiki.nginx.org/HttpStubStatusModule) run the following command, which will display the modules that are compiled in your version of `nginx`:
+1. To check if your nginx has been build with the [nginx HttpStubStatusModule](http://nginx.org/en/docs/http/ngx_http_stub_status_module.html) run the following command, which will display the modules that are compiled in your version of `nginx`:
      ```bash
 	$ nginx -V
     ```
-2. If the string `--with-http_stub_status_module` is in the output then the installed `nginx` includes the `HttpStubStatusModule`. If the string is not there, you will need to install a package that includes the module or compile a version that includes it. Information on compiling `nginx` can found here: [http://wiki.nginx.org/Install](http://wiki.nginx.org/Install)
+2. If the string `--with-http_stub_status_module` is in the output then the installed `nginx` includes the `HttpStubStatusModule`. If the string is not there, you will need to install a package that includes the module or compile a version that includes it. Information on installing and/or compiling `nginx` can found here: [http://nginx.org/en/docs/install.html](http://nginx.org/en/docs/install.html)
 
 #### `HttpStubStatusModule` Configuration
 
@@ -45,6 +45,9 @@ To collect statistics from nginx, it needs to built with the [nginx HttpStubStat
 	  # restrict access to local only
 	  allow 127.0.0.1;
 	  deny all;
+	  
+	  # optional, should be JSON by default
+          status_format json;  
 	}
      ```
 2. Ensure that a listen address is configured in /etc/nginx/conf.d/virtual.conf under the server {} block as well. An complete example that configures the `HttpStubStatusModule` is shown here:
@@ -65,7 +68,14 @@ To collect statistics from nginx, it needs to built with the [nginx HttpStubStat
        }
     }
     ```
-3. Once you make the update, reload your nginx configuration:
+3. (Only relevant for Nginx Plus) To enable collecting metrics per virtual server, you need to enable zones. See Nginx documentation for more details about [status_zone](http://nginx.org/en/docs/http/ngx_http_status_module.html#status_zone) directive. Several virtual servers may share the same zone.
+
+    ```
+    status_zone <your-zone-goes-here>;
+    ```
+
+    
+4. Once you make the update, reload your nginx configuration:
     ```bash
      $ sudo service nginx reload
     ```
@@ -93,11 +103,11 @@ To collect statistics from nginx, it needs to built with the [nginx HttpStubStat
 
 ### Metrics Collected
 
-Tracks the following metrics for [nginx](http://nginx.org) (from the [nginx HttpStubStatusModule](http://wiki.nginx.org/HttpStubStatusModule))
+Tracks the following metrics for [nginx](http://nginx.org) (from the [nginx HttpStubStatusModule](http://nginx.org/en/docs/http/ngx_http_stub_status_module.html))
 
 |Metric Name                  |Description                                                                                   |
 |:----------------------------|:---------------------------------------------------------------------------------------------|
-|_Community Edition Metrics_                                                                                                 |
+|_Nginx Free (Open Source)_                                                                                                  |
 |                                                                                                                            |
 |Nginx Active Connections     |Active connections to nginx                                                                   |
 |Nginx Reads                  |Connections with Nginx reading request headers                                                |
@@ -108,7 +118,7 @@ Tracks the following metrics for [nginx](http://nginx.org) (from the [nginx Http
 |Nginx Requests               |Requests to nginx                                                                             |
 |Nginx Requests per Connection|Requests per handled connections for nginx                                                    |
 |                                                                                                                            |
-|_Commercial Edition Metrics (per zone)_                                                                                     |
+|_Nginx Plus (Commercial) - Metrics per zone                                                                                 |
 |                                                                                                                            |
 |Nginx Responses              |The total number of responses sent to clients.                                                |
 |Nginx Traffic Sent           |The total number of bytes sent to clients.                                                    |
