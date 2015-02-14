@@ -118,7 +118,7 @@ Tracks the following metrics for [nginx](http://nginx.org) (from the [nginx Http
 |Nginx Requests               |Requests to nginx                                                                             |
 |Nginx Requests per Connection|Requests per handled connections for nginx                                                    |
 |                                                                                                                            |
-|_Nginx Plus (Commercial) - Metrics per zone                                                                                 |
+|_Nginx Plus (Commercial) - Metrics per zone_                                                                                 |
 |                                                                                                                            |
 |Nginx Responses              |The total number of responses sent to clients.                                                |
 |Nginx Traffic Sent           |The total number of bytes sent to clients.                                                    |
