@@ -5,7 +5,7 @@ local https    = require('https')
 local boundary = require('boundary')
 local io       = require('io')
 local _url     = require('_url')
-local base64   = require('luvit-base64')
+require('_strings')
 
 
 local __pgk        = "BOUNDARY NGINX"
@@ -38,7 +38,7 @@ local doreq = function(url, cb)
     -- reject self signed certs
     u.rejectUnauthorized = strictSSL
     if username and password then
-      u.headers = {Authorization = "Basic " .. (base64.encode(username..":"..password))}
+      u.headers = {Authorization = "Basic " .. (string.base64(username..":"..password))}
     end
     local output = ""
     local onSuccess = function(res)
