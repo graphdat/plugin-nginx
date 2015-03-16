@@ -28,7 +28,7 @@ end
 
 
 function berror(err)
-  if err then print(string.format("%s ERROR: %s", __pgk, tostring(err))) return err end
+  if err then process.stderr:write(string.format("%s ERROR: %s", __pgk, tostring(err))) return err end
 end
 
 --- do a http(s) request
