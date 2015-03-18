@@ -9,7 +9,7 @@ var _tools = require('graphdat-plugin-tools');
 var _previous = {};
 
 // if we have a name and password, then add an auth header
-var _httpOptions;
+var _httpOptions = {};
 if (_param.username)
     _httpOptions = { auth: { user: _param.username, pass: _param.password, sendImmediately: true }};
 
