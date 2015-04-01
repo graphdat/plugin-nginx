@@ -1,26 +1,35 @@
-Boundary Nginx Plugin
--------------------------
+# Boundary Nginx Plugin
 
 Collects metrics from a nginx instance.
+A Boundary plugin that collects metrics from an Nginx F/OSS instance. This plugin is not intended for the Nginx Plus edition as other metrics are relevant and available there.
 
-### Prerequisites
+## Prerequisites
+
+### Supported OS
 
 |     OS    | Linux | Windows | SmartOS | OS X |
 |:----------|:-----:|:-------:|:-------:|:----:|
 | Supported |   v   |    v    |    v    |  v   |
 
-#### For Boundary Meter V4.0
-(to update/download - curl -fsS -d '{"token":"api.<Your API Key Here>"}' -H 'Content-Type: application/json' https://meter.boundary.com/setup_meter > setup_meter.sh && chmod +x setup_meter.sh && ./setup_meter.sh)
+#### Boundary Meter Versions V4.0 Or Greater REQUIRED
 
-|  Runtime | node.js | Python | Java |
-|:---------|:-------:|:------:|:----:|
-| Required |         |        |      |
+To get the new meter:
+
+    curl -fsS \
+        -d "{\"token\":\"<your API token here>\"}" \
+        -H "Content-Type: application/json" \
+        "https://meter.boundary.com/setup_meter" > setup_meter.sh
+    chmod +x setup_meter.sh
+    ./setup_meter.sh
+
 
 #### For Boundary Meter less than V4.0
 
-|  Runtime | LUA/luvit |
+|  Runtime | node.js | Python | Java |
 |:---------|:-------:|:------:|:----:|
 | Required |    +    |        |      |
+
+- [How to install node.js?](https://help.boundary.com/hc/articles/202360701)
 
 ### Plugin Setup
 
@@ -98,7 +107,9 @@ To collect statistics from nginx, it needs to built with the [nginx HttpStubStat
     ```
 
 
-#### Plugin Configuration Fields
+### Plugin Configuration Fields
+
+#### For All Versions
 
 |Field Name    |Description                                                                                           |
 |:-------------|:-----------------------------------------------------------------------------------------------------|
@@ -110,10 +121,11 @@ To collect statistics from nginx, it needs to built with the [nginx HttpStubStat
 
 
 ### Metrics Collected
+
+#### For All Versions
+
 |Metric Name          |Description                       |
 |:--------------------|:---------------------------------|
-|_Nginx Free (Open Source)_                                                                                                  |
-|                                                                                                                            |
 |Nginx Active Connections     |Active connections to nginx                                                                   |
 |Nginx Reads                  |Connections with Nginx reading request headers                                                |
 |Nginx Writes                 |Connections with Nginx reading request body, processing request or writing response to client.|
@@ -122,9 +134,7 @@ To collect statistics from nginx, it needs to built with the [nginx HttpStubStat
 |Nginx Connections Not Handled|Connections accepted, but not handled                                                         |
 |Nginx Requests               |Requests to nginx                                                                             |
 |Nginx Requests per Connection|Requests per handled connections for nginx                                                    |
-|                                                                                                                            |
-|_Nginx Plus (Commercial) - Metrics per zone_                                                                                 |
-|                                                                                                                            |
-|Nginx Responses              |The total number of responses sent to clients.                                                |
-|Nginx Traffic Sent           |The total number of bytes sent to clients.                                                    |
-|Nginx Traffic Received       |The total number of bytes received from clients.
+
+### References
+
+None
