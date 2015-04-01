@@ -1,6 +1,5 @@
 # Boundary Nginx Plugin
 
-Collects metrics from a nginx instance.
 A Boundary plugin that collects metrics from an Nginx F/OSS instance. This plugin is not intended for the Nginx Plus edition as other metrics are relevant and available there.
 
 ## Prerequisites
