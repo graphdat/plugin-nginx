@@ -5,10 +5,11 @@ local https    = require('https')
 local boundary = require('boundary')
 local io       = require('io')
 local _url     = require('_url')
-require('_strings')
+local String   = require('_strings')
 
 
 local __pgk        = "BOUNDARY NGINX"
+local __ver        = "Version 1.0"
 local _previous    = {}
 local url          = "http://127.0.0.1/nginx_status"
 local pollInterval = 1000
@@ -181,9 +182,7 @@ function printStats(stats)
 
 end
 
-
-
-print("_bevent:NGINX plugin up : version 1.0|t:info|tags:nginx,lua, plugin")
+print(string.format("_bevent:%s : %s UP|t:info|tags:apache, plugin", __pgk, __ver))
 
 timer.setInterval(pollInterval, function ()
 
