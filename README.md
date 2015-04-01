@@ -10,7 +10,7 @@ A Boundary plugin that collects metrics from an Nginx F/OSS instance. This plugi
 |:----------|:-----:|:-------:|:-------:|:----:|
 | Supported |   v   |    v    |    v    |  v   |
 
-#### Boundary Meter Versions V4.0 Or Greater REQUIRED
+#### Boundary Meter Versions V4.0 Or Greater
 
 To get the new meter:
 
