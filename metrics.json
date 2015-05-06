@@ -1,0 +1,90 @@
+{
+  "NGINX_ACTIVE_CONNECTIONS": {
+    "defaultAggregate": "AVG",
+    "defaultResolutionMS": 1000,
+    "description": "Active connections to nginx",
+    "displayName": "Nginx Active Connections ",
+    "displayNameShort": "nginx-conns",
+    "unit": "number"
+  },
+  "NGINX_HANDLED": {
+    "defaultAggregate": "AVG",
+    "defaultResolutionMS": 1000,
+    "description": "Connections handled by nginx",
+    "displayName": "Nginx Connections Handled",
+    "displayNameShort": "nginx-handled",
+    "unit": "number"
+  },
+  "NGINX_NOT_HANDLED": {
+    "defaultAggregate": "AVG",
+    "defaultResolutionMS": 1000,
+    "description": "Connections accepted, but not handled",
+    "displayName": "Nginx Connections Not Handled",
+    "displayNameShort": "nginx-not-handled",
+    "unit": "number"
+  },
+  "NGINX_READING": {
+    "defaultAggregate": "AVG",
+    "defaultResolutionMS": 1000,
+    "description": "Connections with Nginx reading request headers",
+    "displayName": "Nginx Reads",
+    "displayNameShort": "nginx-reads",
+    "unit": "number"
+  },
+  "NGINX_REQUESTS": {
+    "defaultAggregate": "AVG",
+    "defaultResolutionMS": 1000,
+    "description": "Requests to nginx",
+    "displayName": "Nginx Requests",
+    "displayNameShort": "nginx-reqs",
+    "unit": "number"
+  },
+  "NGINX_REQUESTS_PER_CONNECTION": {
+    "defaultAggregate": "AVG",
+    "defaultResolutionMS": 1000,
+    "description": "Requests per handled connections for nginx",
+    "displayName": "Nginx Requests per Connection",
+    "displayNameShort": "nginx-per-conn-reqs",
+    "unit": "number"
+  },
+  "NGINX_RESPONSES": {
+    "defaultAggregate": "AVG",
+    "defaultResolutionMS": 1000,
+    "description": "Number of responses sent on a specific server zone.",
+    "displayName": "Nginx Responses",
+    "displayNameShort": "Nginx Responses",
+    "unit": "number"
+  },
+  "NGINX_TRAFFIC_RECEIVED": {
+    "defaultAggregate": "AVG",
+    "defaultResolutionMS": 1000,
+    "description": "Total traffic received by a specific server zone.",
+    "displayName": "Nginx Traffic Received",
+    "displayNameShort": "Nginx Traffic Rcvd",
+    "unit": "bytecount"
+  },
+  "NGINX_TRAFFIC_SENT": {
+    "defaultAggregate": "AVG",
+    "defaultResolutionMS": 1000,
+    "description": "Total traffic sent from a specific server zone.",
+    "displayName": "Nginx Traffic Sent",
+    "displayNameShort": "Nginx Traffic Sent",
+    "unit": "bytecount"
+  },
+  "NGINX_WAITING": {
+    "defaultAggregate": "AVG",
+    "defaultResolutionMS": 1000,
+    "description": "Keep-alive connections with Nginx in a wait state",
+    "displayName": "Nginx Waiting",
+    "displayNameShort": "nginx-waiting",
+    "unit": "number"
+  },
+  "NGINX_WRITING": {
+    "defaultAggregate": "AVG",
+    "defaultResolutionMS": 1000,
+    "description": "Connections with Nginx reading request body, processing request or writing response to client.",
+    "displayName": "Nginx Writes",
+    "displayNameShort": "nginx-writes",
+    "unit": "number"
+  }
+}
