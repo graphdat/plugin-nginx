@@ -72,11 +72,9 @@ function plugin:onParseValues(data)
     metrics['NGINX_NOT_HANDLED'] = stats['connections']['dropped']
     metrics['NGINX_REQUESTS'] = acc:accumulate('requests', requests)
     metrics['NGINX_REQUESTS_PER_CONNECTION'] = reqs_per_connection
-
     -- Enterprise customers have 'per zone' statistics
-    for i, zone_name in ipairs(stats.server_zones) do
-        local zone = stats.server_zones[zone_name]
-        local src = self.source '.' .. zone_name
+    for zone_name, zone in pairs(stats.server_zones) do
+        local src = self.source .. '.' .. zone_name
         table.insert(metrics, pack('NGINX_REQUESTS', acc:accumulate('requests_' .. zone_name, zone['requests']), nil, src))
         table.insert(metrics, pack('NGINX_RESPONSES', acc:accumulate('responses_' .. zone_name, zone['responses']['total']), nil, src))
         table.insert(metrics, pack('NGINX_TRAFFIC_SENT', acc:accumulate('traffic_sent_' .. zone_name, zone['sent']), nil, src))
