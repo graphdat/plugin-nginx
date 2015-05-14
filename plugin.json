@@ -43,13 +43,6 @@
             "default" : "http://127.0.0.1/nginx_status"
         },
         {
-            "title" : "Strict SSL",
-            "name" : "strictSSL",
-            "description" : "Enforce Strict SSL checking",
-            "type" : "boolean",
-            "default": true
-        },
-        {
             "title" : "Username",
             "name" : "username",
             "description" : "If the endpoint is password protected, what username should graphdat use when calling it.",
