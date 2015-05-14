@@ -1,20 +1,34 @@
-Boundary Nginx Plugin
----------------------
-Collects metrics from an Nginx server instance. See video [walkthrough](https://help.boundary.com/hc/articles/201385702).
+# Boundary Nginx Plugin
 
-### Prerequisites
+A Boundary plugin that collects metrics from an Nginx F/OSS instance. This plugin is not intended for the Nginx Plus edition as other metrics are relevant and available there.
+
+## Prerequisites
+
+### Supported OS
 
 |     OS    | Linux | Windows | SmartOS | OS X |
 |:----------|:-----:|:-------:|:-------:|:----:|
 | Supported |   v   |    v    |    v    |  v   |
 
+#### Boundary Meter Versions V4.0 Or Greater
+
+To get the new meter:
+
+    curl -fsS \
+        -d "{\"token\":\"<your API token here>\"}" \
+        -H "Content-Type: application/json" \
+        "https://meter.boundary.com/setup_meter" > setup_meter.sh
+    chmod +x setup_meter.sh
+    ./setup_meter.sh
+
+
+#### For Boundary Meter less than V4.0
 
 |  Runtime | node.js | Python | Java |
 |:---------|:-------:|:------:|:----:|
 | Required |    +    |        |      |
 
 - [How to install node.js?](https://help.boundary.com/hc/articles/202360701)
-- Requires Ngnix's HttpStubStatusModule
 
 ### Plugin Setup
 
@@ -24,7 +38,7 @@ To collect statistics from nginx, it needs to built with the [nginx HttpStubStat
 
 1. To check if your nginx has been build with the [nginx HttpStubStatusModule](http://nginx.org/en/docs/http/ngx_http_stub_status_module.html) run the following command, which will display the modules that are compiled in your version of `nginx`:
      ```bash
-	$ nginx -V
+  $ nginx -V
     ```
 2. If the string `--with-http_stub_status_module` is in the output then the installed `nginx` includes the `HttpStubStatusModule`. If the string is not there, you will need to install a package that includes the module or compile a version that includes it. Information on installing and/or compiling `nginx` can found here: [http://nginx.org/en/docs/install.html](http://nginx.org/en/docs/install.html)
 
@@ -35,20 +49,20 @@ To collect statistics from nginx, it needs to built with the [nginx HttpStubStat
 1. Edit your default `/etc/nginx/conf.d/virtual.conf` file (or whatever `.conf` file you are using) and add the following configuration in your `server {}` block:
 
      ```
-	location /nginx_status {
-	  # activate stub_status module
-	  stub_status on;
+  location /nginx_status {
+    # activate stub_status module
+    stub_status on;
 
-	  # do not log graphdat polling the endpoint
-	  access_log off;
+    # do not log graphdat polling the endpoint
+    access_log off;
 
-	  # restrict access to local only
-	  allow 127.0.0.1;
-	  deny all;
-	  
-	  # optional, should be JSON by default
-          status_format json;  
-	}
+    # restrict access to local only
+    allow 127.0.0.1;
+    deny all;
+
+    # optional, should be JSON by default
+          status_format json;
+  }
      ```
 2. Ensure that a listen address is configured in /etc/nginx/conf.d/virtual.conf under the server {} block as well. An complete example that configures the `HttpStubStatusModule` is shown here:
 
@@ -74,7 +88,7 @@ To collect statistics from nginx, it needs to built with the [nginx HttpStubStat
     status_zone <your-zone-goes-here>;
     ```
 
-    
+
 4. Once you make the update, reload your nginx configuration:
     ```bash
      $ sudo service nginx reload
@@ -91,7 +105,10 @@ To collect statistics from nginx, it needs to built with the [nginx HttpStubStat
     Reading: 0 Writing: 1 Waiting: 0
     ```
 
+
 ### Plugin Configuration Fields
+
+#### For All Versions
 
 |Field Name    |Description                                                                                           |
 |:-------------|:-----------------------------------------------------------------------------------------------------|
@@ -101,14 +118,13 @@ To collect statistics from nginx, it needs to built with the [nginx HttpStubStat
 |Username      |If the endpoint is password protected, what username should graphdat use when calling it.             |
 |Password      |If the endpoint is password protected, what password should graphdat use when calling it.             |
 
+
 ### Metrics Collected
 
-Tracks the following metrics for [nginx](http://nginx.org) (from the [nginx HttpStubStatusModule](http://nginx.org/en/docs/http/ngx_http_stub_status_module.html))
+#### For All Versions
 
-|Metric Name                  |Description                                                                                   |
-|:----------------------------|:---------------------------------------------------------------------------------------------|
-|_Nginx Free (Open Source)_                                                                                                  |
-|                                                                                                                            |
+|Metric Name          |Description                       |
+|:--------------------|:---------------------------------|
 |Nginx Active Connections     |Active connections to nginx                                                                   |
 |Nginx Reads                  |Connections with Nginx reading request headers                                                |
 |Nginx Writes                 |Connections with Nginx reading request body, processing request or writing response to client.|
@@ -117,9 +133,7 @@ Tracks the following metrics for [nginx](http://nginx.org) (from the [nginx Http
 |Nginx Connections Not Handled|Connections accepted, but not handled                                                         |
 |Nginx Requests               |Requests to nginx                                                                             |
 |Nginx Requests per Connection|Requests per handled connections for nginx                                                    |
-|                                                                                                                            |
-|_Nginx Plus (Commercial) - Metrics per zone_                                                                                 |
-|                                                                                                                            |
-|Nginx Responses              |The total number of responses sent to clients.                                                |
-|Nginx Traffic Sent           |The total number of bytes sent to clients.                                                    |
-|Nginx Traffic Received       |The total number of bytes received from clients.                                              |
+
+### References
+
+None
