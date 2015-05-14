@@ -108,8 +108,6 @@ To collect statistics from nginx, it needs to built with the [nginx HttpStubStat
 
 ### Plugin Configuration Fields
 
-#### For All Versions
-
 |Field Name    |Description                                                                                           |
 |:-------------|:-----------------------------------------------------------------------------------------------------|
 |Source        |The Source to display in the legend for the nginx data.  It will default to the hostname of the server|
@@ -133,6 +131,14 @@ To collect statistics from nginx, it needs to built with the [nginx HttpStubStat
 |Nginx Connections Not Handled|Connections accepted, but not handled                                                         |
 |Nginx Requests               |Requests to nginx                                                                             |
 |Nginx Requests per Connection|Requests per handled connections for nginx                                                    |
+
+#### Only for Nginx Plus - Metrics per zone
+
+|Metric Name          |Description                       |
+|:--------------------|:---------------------------------|                                                        
+|Nginx Responses              |The total number of responses sent to clients.                                                |
+|Nginx Traffic Sent           |The total number of bytes sent to clients.                                                    |
+|Nginx Traffic Received       |The total number of bytes received from clients.                                              |
 
 ### References
 
