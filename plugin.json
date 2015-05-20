@@ -25,10 +25,21 @@
         {
             "name" : "Nginx F/OSS",
             "layout" : "d-w=3&d-h=2&d-pad=5&d-bg=none&d-g-NGINX_ACTIVE_CONNECTIONS=0-0-1-1&d-g-NGINX_READING=2-1-1-1-t&d-g-NGINX_WRITING=2-1-1-1-b&d-g-NGINX_REQUESTS=1-0-1-1&d-g-NGINX_HANDLED=1-1-1-1-t&d-g-NGINX_NOT_HANDLED=1-1-1-1-b&d-g-NGINX_REQUESTS_PER_CONNECTION=2-0-1-1&d-g-NGINX_WAITING=0-1-1-1"
-        }
+        }, 
+        {
+            "name" : "Nginx Plus",
+            "layout" : "d-w=3&d-h=2&d-pad=5&d-bg=none&d-g-NGINX_ACTIVE_CONNECTIONS=0-0-1-1&d-g-NGINX_HANDLED=1-1-1-1-t&d-g-NGINX_NOT_HANDLED=1-1-1-1-b&d-g-NGINX_REQUESTS_PER_CONNECTION=2-0-1-1&d-g-NGINX_WAITING=0-1-1-1&d-g-NGINX_TRAFFIC_SENT=2-1-1-1-t&d-g-NGINX_TRAFFIC_RECEIVED=2-1-1-1-b&d-g-NGINX_REQUESTS=1-0-1-1-t&d-g-NGINX_RESPONSES=1-0-1-1-b"
+         }
     ],
-
     "paramSchema" : [
+        {
+           "title" : "Poll Interval",
+            "name" : "pollInterval",
+            "description" : "The Poll Interval in milliseconds. Ex. 1000",
+            "type" : "number",
+            "default" : 1000,
+            "required" : false
+        },
         {
             "title" : "Source",
             "name" : "source",
@@ -45,13 +56,13 @@
         {
             "title" : "Username",
             "name" : "username",
-            "description" : "If the endpoint is password protected, what username should graphdat use when calling it.",
+            "description" : "If the endpoint is password protected, what username we should use when calling it.",
             "type" : "string"
         },
         {
             "title" : "Password",
             "name" : "password",
-            "description" : "If the endpoint is password protected, what password should graphdat use when calling it.",
+            "description" : "If the endpoint is password protected, what password we should use when calling it.",
             "type" : "password"
         }
     ]
