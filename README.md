@@ -1,6 +1,6 @@
-# Boundary Nginx Plugin
+# Boundary Nginx Free Plugin
 
-A Boundary plugin that collects metrics from an Nginx F/OSS instance. This plugin is not intended for the Nginx Plus edition as other metrics are relevant and available there.
+A Boundary plugin that collects metrics from an Nginx Free instance. This plugin is not intended for the Nginx Plus edition as other metrics are relevant and available there.
 
 ## Prerequisites
 
@@ -10,19 +10,12 @@ A Boundary plugin that collects metrics from an Nginx F/OSS instance. This plugi
 |:----------|:-----:|:-------:|:-------:|:----:|
 | Supported |   v   |    v    |    v    |  v   |
 
-#### Boundary Meter Versions V4.0 Or Greater
+#### Boundary Meter versions v4.2 or later
 
-To get the new meter:
+- To install new meter go to Settings->Installation or [see instructons](https://help.boundary.com/hc/en-us/sections/200634331-Installation). 
+- To upgrade the meter to the latest version - [see instructons](https://help.boundary.com/hc/en-us/articles/201573102-Upgrading-the-Boundary-Meter). 
 
-    curl -fsS \
-        -d "{\"token\":\"<your API token here>\"}" \
-        -H "Content-Type: application/json" \
-        "https://meter.boundary.com/setup_meter" > setup_meter.sh
-    chmod +x setup_meter.sh
-    ./setup_meter.sh
-
-
-#### For Boundary Meter less than V4.0
+#### For Boundary Meter earlier than v4.2
 
 |  Runtime | node.js | Python | Java |
 |:---------|:-------:|:------:|:----:|
@@ -82,12 +75,6 @@ To collect statistics from nginx, it needs to built with the [nginx HttpStubStat
        }
     }
     ```
-3. (Only relevant for Nginx Plus) To enable collecting metrics per virtual server, you need to enable zones. See Nginx documentation for more details about [status_zone](http://nginx.org/en/docs/http/ngx_http_status_module.html#status_zone) directive. Several virtual servers may share the same zone.
-
-    ```
-    status_zone <your-zone-goes-here>;
-    ```
-
 
 4. Once you make the update, reload your nginx configuration:
     ```bash
@@ -104,7 +91,6 @@ To collect statistics from nginx, it needs to built with the [nginx HttpStubStat
     5 5 5
     Reading: 0 Writing: 1 Waiting: 0
     ```
-
 
 ### Plugin Configuration Fields
 
@@ -132,14 +118,10 @@ To collect statistics from nginx, it needs to built with the [nginx HttpStubStat
 |Nginx Requests               |Requests to nginx                                                                             |
 |Nginx Requests per Connection|Requests per handled connections for nginx                                                    |
 
-#### Only for Nginx Plus - Metrics per zone
+### Dashboards
 
-|Metric Name          |Description                       |
-|:--------------------|:---------------------------------|                                                        
-|Nginx Responses              |The total number of responses sent to clients.                                                |
-|Nginx Traffic Sent           |The total number of bytes sent to clients.                                                    |
-|Nginx Traffic Received       |The total number of bytes received from clients.                                              |
+- NGINX Free
 
 ### References
 
-None
+http://nginx.org/en/docs/http/ngx_http_stub_status_module.html
