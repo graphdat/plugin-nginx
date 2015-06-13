@@ -142,4 +142,4 @@ To collect statistics from nginx, it needs to built with the [nginx HttpStubStat
 
 ### References
 
-None
+http://nginx.org/en/docs/http/ngx_http_stub_status_module.html
